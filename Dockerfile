@@ -8,14 +8,14 @@ COPY ["WebApplication5/WebApplication5.csproj", "WebApplication5/"]
 RUN dotnet restore "WebApplication5/WebApplication5.csproj"
 COPY . .
 WORKDIR "/src"
-RUN dotnet build "WebApplication5.csproj" -c Release -o /app
+RUN dotnet build "WebApplication5/WebApplication5.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "WebApplication5.csproj" -c Release -o /app
+RUN dotnet publish "WebApplication5/WebApplication5.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "WebApplication5.dll
+ENTRYPOINT ["dotnet", "WebApplication5.dll"]
 
 
