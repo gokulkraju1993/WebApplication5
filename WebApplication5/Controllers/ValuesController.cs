@@ -48,7 +48,7 @@ namespace WebApplication5.Controllers
         public ActionResult<string> Send(string message)
         {
 
-            var factory = new ConnectionFactory() { HostName = "rabbit"};
+            var factory = new ConnectionFactory() { HostName = "localhost" , Port = 15672 };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
