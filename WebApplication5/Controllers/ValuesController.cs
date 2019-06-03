@@ -48,7 +48,147 @@ namespace WebApplication5.Controllers
         public ActionResult<string> Send(string message)
         {
 
-            var factory = new ConnectionFactory() { HostName = "localhost" , Port = 15672 };
+            var factory = new ConnectionFactory() { HostName = "localhost"};
+            using (var connection = factory.CreateConnection())
+            {
+                using (var channel = connection.CreateModel())
+                {
+                    channel.QueueDeclare(queue: "test",
+                        durable: false,
+                        exclusive: false,
+                        autoDelete: false,
+                        arguments: null
+                        );
+
+                    var body = Encoding.UTF8.GetBytes(message);
+
+                    channel.BasicPublish(exchange: "",
+                        routingKey: "test",
+                        basicProperties: null,
+                        body: body);
+                }
+            }
+
+            return message;
+        }
+
+        [HttpGet("Send1/{message}")]
+        public ActionResult<string> Send1(string message)
+        {
+
+            var factory = new ConnectionFactory() { HostName = "localhost", Port = 15672 };
+            using (var connection = factory.CreateConnection())
+            {
+                using (var channel = connection.CreateModel())
+                {
+                    channel.QueueDeclare(queue: "test",
+                        durable: false,
+                        exclusive: false,
+                        autoDelete: false,
+                        arguments: null
+                        );
+
+                    var body = Encoding.UTF8.GetBytes(message);
+
+                    channel.BasicPublish(exchange: "",
+                        routingKey: "test",
+                        basicProperties: null,
+                        body: body);
+                }
+            }
+
+            return message;
+        }
+
+        [HttpGet("Send2/{message}")]
+        public ActionResult<string> Send2(string message)
+        {
+
+            var factory = new ConnectionFactory() { HostName = "localhost", Port = 5672 };
+            using (var connection = factory.CreateConnection())
+            {
+                using (var channel = connection.CreateModel())
+                {
+                    channel.QueueDeclare(queue: "test",
+                        durable: false,
+                        exclusive: false,
+                        autoDelete: false,
+                        arguments: null
+                        );
+
+                    var body = Encoding.UTF8.GetBytes(message);
+
+                    channel.BasicPublish(exchange: "",
+                        routingKey: "test",
+                        basicProperties: null,
+                        body: body);
+                }
+            }
+
+            return message;
+        }
+
+        [HttpGet("Send3/{message}")]
+        public ActionResult<string> Send3(string message)
+        {
+
+            var factory = new ConnectionFactory() { HostName = "127.0.0.1", Port = 15672 };
+            using (var connection = factory.CreateConnection())
+            {
+                using (var channel = connection.CreateModel())
+                {
+                    channel.QueueDeclare(queue: "test",
+                        durable: false,
+                        exclusive: false,
+                        autoDelete: false,
+                        arguments: null
+                        );
+
+                    var body = Encoding.UTF8.GetBytes(message);
+
+                    channel.BasicPublish(exchange: "",
+                        routingKey: "test",
+                        basicProperties: null,
+                        body: body);
+                }
+            }
+
+            return message;
+        }
+
+        [HttpGet("Send4/{message}")]
+        public ActionResult<string> Send4(string message)
+        {
+
+            var factory = new ConnectionFactory() { HostName = "127.0.0.1", Port = 5672 };
+            using (var connection = factory.CreateConnection())
+            {
+                using (var channel = connection.CreateModel())
+                {
+                    channel.QueueDeclare(queue: "test",
+                        durable: false,
+                        exclusive: false,
+                        autoDelete: false,
+                        arguments: null
+                        );
+
+                    var body = Encoding.UTF8.GetBytes(message);
+
+                    channel.BasicPublish(exchange: "",
+                        routingKey: "test",
+                        basicProperties: null,
+                        body: body);
+                }
+            }
+
+            return message;
+        }
+
+        [HttpGet("Send5/{message}")]
+        public ActionResult<string> Send5(string message)
+        {
+
+            var factory = new ConnectionFactory() { HostName = "rabbit";
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
