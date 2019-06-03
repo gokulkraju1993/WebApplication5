@@ -188,7 +188,7 @@ namespace WebApplication5.Controllers
         public ActionResult<string> Send5(string message)
         {
 
-            var factory = new ConnectionFactory() { HostName = "rabbit" }SSS;
+            var factory = new ConnectionFactory() { HostName = "rabbit" };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
