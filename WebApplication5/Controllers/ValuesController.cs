@@ -217,7 +217,7 @@ namespace WebApplication5.Controllers
         public ActionResult<string> Send6(string message)
         {
 
-            var factory = new ConnectionFactory() { HostName = "10.102.134.13" };
+            var factory = new ConnectionFactory() { HostName = "localhost", Port = 89 };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
