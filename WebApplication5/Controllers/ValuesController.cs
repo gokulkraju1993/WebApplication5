@@ -131,7 +131,7 @@ namespace WebApplication5.Controllers
         public ActionResult<string> Send3(string message)
         {
 
-            var factory = new ConnectionFactory() { HostName = "rabbit", UserName = "admin", Password = "admin", VirtualHost = "/" };
+            var factory = new ConnectionFactory() { HostName = "rabbit", Port = 89, UserName = "admin", Password = "admin", VirtualHost = "/" };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
@@ -159,7 +159,7 @@ namespace WebApplication5.Controllers
         public ActionResult<string> Send4(string message)
         {
 
-            var factory = new ConnectionFactory() { HostName = "localhost", Port = 89, UserName = "admin", Password = "admin", VirtualHost = "/" };
+            var factory = new ConnectionFactory() { HostName = "localhost", UserName = "admin", Password = "admin", VirtualHost = "/" };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
@@ -187,7 +187,7 @@ namespace WebApplication5.Controllers
         public ActionResult<string> Send5(string message)
         {
 
-            var factory = new ConnectionFactory() { HostName = "rabbit", UserName = "admin", Password = "admin", VirtualHost = "/" };
+            var factory = new ConnectionFactory() { HostName = "localhost", UserName = "admin", Password = "admin", VirtualHost = "/" };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
