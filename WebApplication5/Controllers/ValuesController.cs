@@ -160,7 +160,7 @@ namespace WebApplication5.Controllers
         public ActionResult<string> Send4(string message)
         {
 
-            var factory = new ConnectionFactory() { HostName = "127.0.0.1", Port = 5672 };
+            var factory = new ConnectionFactory() { HostName = "127.0.0.1" };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
@@ -217,7 +217,7 @@ namespace WebApplication5.Controllers
         public ActionResult<string> Send6(string message)
         {
 
-            var factory = new ConnectionFactory() { HostName = "localhost", Port = 89 };
+            var factory = new ConnectionFactory() { HostName = "10.102.235.46", Port = 89 };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
