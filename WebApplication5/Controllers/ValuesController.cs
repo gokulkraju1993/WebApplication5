@@ -47,7 +47,7 @@ namespace WebApplication5.Controllers
         [HttpGet("Send/{message}")]
         public ActionResult<string> Send(string message)
         {
-            var factory = new ConnectionFactory() { HostName = "rabbit", Port = 5672, UserName = "guest", Password = "guest",VirtualHost="/" };
+            var factory = new ConnectionFactory() { HostName = "10.0.75.1", Port = 5672, UserName = "admin", Password = "admin", VirtualHost = "/" };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
