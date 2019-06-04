@@ -103,7 +103,7 @@ namespace WebApplication5.Controllers
         public ActionResult<string> Send2(string message)
         {
 
-            var factory = new ConnectionFactory() { HostName = "localhost", Port = 5672, UserName = "admin", Password = "admin", VirtualHost = "/" };
+            var factory = new ConnectionFactory() { HostName = "10.102.235.46", Port = 5672, UserName = "admin", Password = "admin", VirtualHost = "/" };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
