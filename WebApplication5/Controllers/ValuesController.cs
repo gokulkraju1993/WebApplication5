@@ -47,8 +47,7 @@ namespace WebApplication5.Controllers
         [HttpGet("Send/{message}")]
         public ActionResult<string> Send(string message)
         {
-
-            var factory = new ConnectionFactory() { HostName = "localhost"};
+            var factory = new ConnectionFactory() { HostName = "rabbit", Port = 5672, UserName = "guest", Password = "guest",VirtualHost="/" };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
@@ -76,7 +75,7 @@ namespace WebApplication5.Controllers
         public ActionResult<string> Send1(string message)
         {
 
-            var factory = new ConnectionFactory() { HostName = "rabbit", Port = 15672 };
+            var factory = new ConnectionFactory() { HostName = "rabbit", Port = 15672, UserName = "guest", Password = "guest", VirtualHost = "/" };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
@@ -104,7 +103,7 @@ namespace WebApplication5.Controllers
         public ActionResult<string> Send2(string message)
         {
 
-            var factory = new ConnectionFactory() { HostName = "rabbit", Port = 5672 };
+            var factory = new ConnectionFactory() { HostName = "localhost", Port = 5672, UserName = "guest", Password = "guest", VirtualHost = "/" };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
@@ -132,7 +131,7 @@ namespace WebApplication5.Controllers
         public ActionResult<string> Send3(string message)
         {
 
-            var factory = new ConnectionFactory() { HostName = "127.0.0.1", Port = 15672 };
+            var factory = new ConnectionFactory() { HostName = "localhost", Port = 15672, UserName = "guest", Password = "guest", VirtualHost = "/" };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
@@ -160,7 +159,7 @@ namespace WebApplication5.Controllers
         public ActionResult<string> Send4(string message)
         {
 
-            var factory = new ConnectionFactory() { HostName = "127.0.0.1" };
+            var factory = new ConnectionFactory() { HostName = "localhost", Port = 89, UserName = "guest", Password = "guest", VirtualHost = "/" };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
@@ -188,7 +187,7 @@ namespace WebApplication5.Controllers
         public ActionResult<string> Send5(string message)
         {
 
-            var factory = new ConnectionFactory() { HostName = "rabbit" };
+            var factory = new ConnectionFactory() { HostName = "rabbit", UserName = "guest", Password = "guest", VirtualHost = "/" };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
