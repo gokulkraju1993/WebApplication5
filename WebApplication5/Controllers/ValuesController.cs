@@ -71,11 +71,11 @@ namespace WebApplication5.Controllers
             return message;
         }
 
-        [HttpGet("Send1/{message}")]
+        [HttpGet("Send3/{message}")]
         public ActionResult<string> Send1(string message)
         {
 
-            var factory = new ConnectionFactory() { HostName = "127.0.0.1:89", Port = 89, UserName = "admin", Password = "admin", VirtualHost = "/" };
+            var factory = new ConnectionFactory() { HostName = "rabbit", UserName = "admin", Password = "admin", VirtualHost = "/" };
             using (var connection = factory.CreateConnection())
             {
                 using (var channel = connection.CreateModel())
@@ -97,148 +97,7 @@ namespace WebApplication5.Controllers
             }
 
             return message;
-        }
-
-        [HttpGet("Send2/{message}")]
-        public ActionResult<string> Send2(string message)
-        {
-
-            var factory = new ConnectionFactory() { HostName = "127.0.0.1:89", Port = 5672, UserName = "admin", Password = "admin", VirtualHost = "/" };
-            using (var connection = factory.CreateConnection())
-            {
-                using (var channel = connection.CreateModel())
-                {
-                    channel.QueueDeclare(queue: "test",
-                        durable: false,
-                        exclusive: false,
-                        autoDelete: false,
-                        arguments: null
-                        );
-
-                    var body = Encoding.UTF8.GetBytes(message);
-
-                    channel.BasicPublish(exchange: "",
-                        routingKey: "test",
-                        basicProperties: null,
-                        body: body);
-                }
-            }
-
-            return message;
-        }
-
-        [HttpGet("Send3/{message}")]
-        public ActionResult<string> Send3(string message)
-        {
-
-            var factory = new ConnectionFactory() { HostName = "rabbit", Port = 89, UserName = "admin", Password = "admin", VirtualHost = "/" };
-            using (var connection = factory.CreateConnection())
-            {
-                using (var channel = connection.CreateModel())
-                {
-                    channel.QueueDeclare(queue: "test",
-                        durable: false,
-                        exclusive: false,
-                        autoDelete: false,
-                        arguments: null
-                        );
-
-                    var body = Encoding.UTF8.GetBytes(message);
-
-                    channel.BasicPublish(exchange: "",
-                        routingKey: "test",
-                        basicProperties: null,
-                        body: body);
-                }
-            }
-
-            return message;
-        }
-
-        [HttpGet("Send4/{message}")]
-        public ActionResult<string> Send4(string message)
-        {
-
-            var factory = new ConnectionFactory() { HostName = "localhost", UserName = "admin", Password = "admin", VirtualHost = "/" };
-            using (var connection = factory.CreateConnection())
-            {
-                using (var channel = connection.CreateModel())
-                {
-                    channel.QueueDeclare(queue: "test",
-                        durable: false,
-                        exclusive: false,
-                        autoDelete: false,
-                        arguments: null
-                        );
-
-                    var body = Encoding.UTF8.GetBytes(message);
-
-                    channel.BasicPublish(exchange: "",
-                        routingKey: "test",
-                        basicProperties: null,
-                        body: body);
-                }
-            }
-
-            return message;
-        }
-
-        [HttpGet("Send5/{message}")]
-        public ActionResult<string> Send5(string message)
-        {
-
-            var factory = new ConnectionFactory() { HostName = "localhost", UserName = "admin", Password = "admin", VirtualHost = "/" };
-            using (var connection = factory.CreateConnection())
-            {
-                using (var channel = connection.CreateModel())
-                {
-                    channel.QueueDeclare(queue: "test",
-                        durable: false,
-                        exclusive: false,
-                        autoDelete: false,
-                        arguments: null
-                        );
-
-                    var body = Encoding.UTF8.GetBytes(message);
-
-                    channel.BasicPublish(exchange: "",
-                        routingKey: "test",
-                        basicProperties: null,
-                        body: body);
-                }
-            }
-
-            return message;
-        }
-
-
-        [HttpGet("Send6/{message}")]
-        public ActionResult<string> Send6(string message)
-        {
-
-            var factory = new ConnectionFactory() { HostName = "10.102.235.46", Port = 89 };
-            using (var connection = factory.CreateConnection())
-            {
-                using (var channel = connection.CreateModel())
-                {
-                    channel.QueueDeclare(queue: "test",
-                        durable: false,
-                        exclusive: false,
-                        autoDelete: false,
-                        arguments: null
-                        );
-
-                    var body = Encoding.UTF8.GetBytes(message);
-
-                    channel.BasicPublish(exchange: "",
-                        routingKey: "test",
-                        basicProperties: null,
-                        body: body);
-                }
-            }
-
-            return message;
-        }
+        }       
 
     }
 }
