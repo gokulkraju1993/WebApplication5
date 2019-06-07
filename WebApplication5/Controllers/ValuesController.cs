@@ -71,7 +71,7 @@ namespace WebApplication5.Controllers
             return message;
         }
 
-        [HttpGet("Send3/{message}")]
+        [HttpGet("Send1/{message}")]
         public ActionResult<string> Send1(string message)
         {
 
@@ -97,7 +97,20 @@ namespace WebApplication5.Controllers
             }
 
             return message;
-        }       
+        }
+
+        [HttpPost]
+        public string CallReceiver([FromBody] string message)
+        {
+            if (!string.IsNullOrEmpty(message))
+            {
+                return "true";
+            }
+            else
+            {
+                return "false";
+            }
+        }
 
     }
 }
