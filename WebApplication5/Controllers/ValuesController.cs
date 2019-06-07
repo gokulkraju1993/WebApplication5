@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RabbitMQ.Client;
 using System.Text;
+using ServiceStack.Redis;
 
 namespace WebApplication5.Controllers
 {
@@ -68,7 +69,7 @@ namespace WebApplication5.Controllers
                 }
             }
 
-            return message;
+            return CallReceiver();
         }
 
         [HttpGet("Send1/{message}")]
@@ -96,19 +97,16 @@ namespace WebApplication5.Controllers
                 }
             }
 
-            return message;
+            return CallReceiver();
         }
 
-        [HttpPost]
-        public string CallReceiver([FromBody] string message)
+        public string CallReceiver()
         {
-            if (!string.IsNullOrEmpty(message))
+            using (RedisClient redisClient = new RedisClient("10.0.75.1", 6379))
             {
-                return "true";
-            }
-            else
-            {
-                return "false";
+                string isSuccess = Encoding.UTF8.GetString(redisClient.Get("message"));
+
+                return isSuccess;
             }
         }
 
